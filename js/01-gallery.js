@@ -24,8 +24,20 @@ function makemodal(evt) {
   evt.preventDefault();
   if (evt.target !== evt.currentTarget) {
     const bigimg = evt.target.dataset.source
-    const instance = basicLightbox.create(`<div class="modal"><img class='gallery__image' src=${bigimg}></div>`);
-    instance.show()
+    const modalfull = basicLightbox.create(`<div class="modal"><img class='gallery__image' src=${bigimg}></div>`);
+    modalfull.show()
+    
+    window.addEventListener('keydown', (evt)=>{
+      if (evt.code === 'Escape') {
+        modalfull.close();
+      }
+    })
+    //TODO ::
+    // window.addEventListener('click', (evt)=>{
+    //   if (evt.target.parentNode.classList.contains('gallery__image')) {
+    //     modalfull.close();
+    //   }
+    // }) 
   } else {
     return;
   }
