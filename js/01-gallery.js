@@ -1,7 +1,7 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
-
 console.log(galleryItems);
+
 const galleryDiv = document.querySelector("div");
 const galleryList = document.createElement("ul");
 galleryList.classList.add("gallery");
@@ -11,7 +11,11 @@ for (const item of galleryItems) {
   const { preview, original, description } = item;
   galleryString =
     galleryString +
-    `<li class="gallery__item"><a class="gallery__link" href=${original}><img class="gallery__img" src=${preview} data-source=${original} alt=${description} width="372" height="240"></a></li>`;
+    `<li class="gallery__item">
+      <a class="gallery__link" href=${original}>
+        <img class="gallery__img" src=${preview} data-source=${original} alt=${description} width="372" height="240">
+      </a>
+    </li>`;
 }
 galleryList.insertAdjacentHTML("beforeend", galleryString);
 galleryDiv.append(galleryList);
