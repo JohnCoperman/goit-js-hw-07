@@ -27,39 +27,3 @@ function makemodal(evt) {
   }
 }
 galleryDiv.addEventListener("click", makemodal);
-
-// galleryDiv.addEventListener("click", (evt)=>{
-//   evt.preventDefault(); 
-//   if (evt.target !== evt.currentTarget) {
-//     const bigimg = evt.target.dataset.source
-//     const instance = basicLightbox.create(`<div class="modal"><img class='gallery__image' src=${bigimg}></div>`);
-//     // instance
-//     instance.show();
-    
-//   } else {
-//     return;
-//   }
-// });
-
-//TODO----Tests
-
-// const bodycont = document.querySelector('body');
-// modalEl.addEventListener('click', (evt)=>{
-  // if (evt.target.classList.contains('modal')){
-    // evt.target.innerHTML('')
-  // }
-// })
-
-// const modalDiv = document.querySelector('.basic-Lightbox');
-// modalDiv.addEventListener('click', (evt)=>{
-//   if (evt.target.classList.contains('modal')){
-//     evt.currentTarget.innerHTML('')
-//   }
-// })
-
-//<a id="testLink" href="">dkfvjhbefu</a>
-// const lin = document.querySelector("#testLink");
-// lin.addEventListener("click", evt => {
-//   evt.preventDefault();
-//   console.log(evt.currentTarget);
-// });
