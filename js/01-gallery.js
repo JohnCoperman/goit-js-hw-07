@@ -2,7 +2,7 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 console.log(galleryItems);
 
-const galleryDiv = document.querySelector("div");
+const galleryCont = document.querySelector(".container");
 const galleryList = document.createElement("ul");
 galleryList.classList.add("gallery");
 
@@ -18,28 +18,33 @@ for (const item of galleryItems) {
     </li>`;
 }
 galleryList.insertAdjacentHTML("beforeend", galleryString);
-galleryDiv.append(galleryList);
+galleryCont.append(galleryList);
 
-function makemodal(evt) {
+function modalwindow(evt) {
   evt.preventDefault();
-  if (evt.target !== evt.currentTarget) {
-    const bigimg = evt.target.dataset.source
-    const modalfull = basicLightbox.create(`<div class="modal"><img class='gallery__image' src=${bigimg}></div>`);
-    modalfull.show()
-    
-    window.addEventListener('keydown', (evt)=>{
+  if (evt.target.classList.contains('gallery__img')) {
+    const bigimg = evt.target.dataset.source;
+    const modalfull = basicLightbox.create(`<div class="modal"><img class='gallery__image' src=${bigimg}></div>`, {closable: false});
+    modalfull.show();
+
+    function closeOnKey(evt) {
       if (evt.code === 'Escape') {
         modalfull.close();
+        this.removeEventListener('mousedown', closeOnClick);
       }
-    })
-    //TODO ::
-    // window.addEventListener('click', (evt)=>{
-    //   if (evt.target.parentNode.classList.contains('gallery__image')) {
-    //     modalfull.close();
-    //   }
-    // }) 
+      this.removeEventListener('keydown', closeOnKey);
+    };
+
+    function closeOnClick() {
+      modalfull.close();
+      this.removeEventListener('mousedown', closeOnClick);
+      this.removeEventListener('keydown', closeOnKey);
+    };
+    window.addEventListener('keydown', closeOnKey);
+    window.addEventListener('mousedown', closeOnClick);
   } else {
     return;
-  }
+  };
 }
-galleryDiv.addEventListener("click", makemodal);
+
+galleryList.addEventListener("click", modalwindow);
