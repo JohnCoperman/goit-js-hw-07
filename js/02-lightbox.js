@@ -20,7 +20,10 @@ for (const item of galleryItems) {
 galleryList.insertAdjacentHTML("beforeend", galleryString);
 galleryCont.append(galleryList);
 
-let gallery = new SimpleLightbox('.gallery a');
-gallery.on('show.simplelightbox');
+let gallery = new SimpleLightbox('.gallery a',
+  {
+    captionType: 'attr', captionPosition:'bottom', captionsData: 'alt', captionDelay: 250, captionClass:'modal-img-cap_pos'
+  }
+);
 
-//? це версія personal
+gallery.on('show.simplelightbox');
